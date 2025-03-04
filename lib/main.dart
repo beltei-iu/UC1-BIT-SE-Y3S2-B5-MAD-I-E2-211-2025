@@ -1,33 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mad/screen/home_screen.dart';
+import 'package:mad/screen/splash_screen.dart';
 
 void main() {
-  // Level Control
-  //final text = Text("Welcome to MAD");
-  final logo = Image.asset("assets/images/beltei.png");
-  final appSlogan = Text("The Future of Global Leader");
-
-  final colLogo = Column(
-    children: [logo, appSlogan],
-  );
-
-  final logoBox = Expanded(child: logo);
-
-  final getStart = ElevatedButton(
-      onPressed: () {
-        print("Click...");
-      },
-      child: Text("Get Start"));
-
-  // Level Layout/Block
-  final col = Column(
-    children: [logoBox, getStart],
-  );
-
-  // Level Screen - Splash Screen
-  final screen = Scaffold(
-    body: col,
-  );
-
   // Level Root
   final root = MaterialApp(
     title: 'MAD211',
@@ -35,7 +10,7 @@ void main() {
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       useMaterial3: true,
     ),
-    home: screen,
+    home: SplashScreen(),
   );
 
   // function run app
