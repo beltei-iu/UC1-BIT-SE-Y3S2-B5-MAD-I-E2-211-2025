@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mad/screen/login_screen.dart';
 import 'package:mad/screen/main_screen.dart';
+import 'package:mad/route/app_route.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -35,6 +36,11 @@ class SplashScreen extends StatelessWidget {
                   final route =
                       MaterialPageRoute(builder: (content) => MainScreen());
                   Navigator.pushReplacement(context, route);
+
+                  //Navigator.pushReplacementNamed(context, AppRoute.mainScreen);
+
+                  // AppRoute.key.currentState
+                  //     ?.pushReplacementNamed(AppRoute.mainScreen);
                 },
                 child: Text("Get Start")),
           ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mad/util/app_color.dart';
+import 'package:mad/screen/news_list_screen.dart';
+import 'package:mad/route/app_route.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -6,36 +9,65 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _State extends State<HomeScreen> {
-  bool? _isBlack;
-
   @override
-  void initState() {
-    _isBlack = true;
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
-    final icon = Icon(Icons.heart_broken);
-    final iconRed = Icon(
-      Icons.heart_broken,
-      color: Colors.red,
+    final appBar = AppBar(
+      title:
+          Image.asset('assets/images/BELTEI_international_university_logo.png'),
+      elevation: 5,
+      centerTitle: true,
+      backgroundColor: AppColor.appColor,
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 8),
+          child: Icon(Icons.notifications),
+        )
+      ],
     );
 
-    final checkBox = Checkbox(value: false, onChanged: (v) {});
+    final body = ListView(
+      children: [_buildRowMenu, _buildRowMenu, _buildRowMenu],
+    );
 
     final screen = Scaffold(
-      body: Center(
-        child: GestureDetector(
-          child: _isBlack! ? icon : iconRed,
-          onTap: () {
-            setState(() {
-              _isBlack = !_isBlack!;
-            });
-          },
+      appBar: appBar,
+      body: body,
+    );
+    return screen;
+  }
+
+  Widget get _buildRowMenu {
+    List<String> menuList = ["ព័ត៏មាន", "ព័ត៏មាន", "ព័ត៏មាន", "ព័ត៏មាន"];
+
+    final row = menuList.map((i) => cardMenu(i)).toList();
+
+    return Row(
+      children: row,
+    );
+  }
+
+  Widget cardMenu(String title) {
+    return GestureDetector(
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width / 4,
+        height: 100,
+        child: Card(
+          child: Center(
+            child: Text("ព័ត៏មាន"),
+          ),
         ),
       ),
-    );
+      onTap: () {
+        // final route = MaterialPageRoute(
+        //     builder: (context) => NewsListScreen(title: title));
+        // Navigator.push(context, route);
 
-    return screen;
+        AppRoute.key.currentState
+            ?.pushNamed(AppRoute.newsListScreen, arguments: title);
+      },
+    );
   }
 }
