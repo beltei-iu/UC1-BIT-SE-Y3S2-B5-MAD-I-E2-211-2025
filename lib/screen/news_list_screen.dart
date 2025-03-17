@@ -23,7 +23,11 @@ class _NewsListScreenState extends State<NewsListScreen> {
     final screen = Scaffold(
       appBar: appBar,
       body: Center(
-        child: Text("${title}"),
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop("Data from Screen2 to Screen1");
+            },
+            child: Text("Back")),
       ),
     );
 
